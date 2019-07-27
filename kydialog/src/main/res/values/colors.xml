@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white_kydialog_root_view_color">#ffffff</color>
+    
+    <color name="black_kydialog_text_hight_light">#353535</color>
+    <color name="black_kydialog_text_light">#313131</color>
+    <color name="black_kydialog_text_normal">#757575</color>
+    <color name="gray_kydialog_split_line">#F0F0F0</color>
+    <color name="kydialog_text_confirm">#576C91</color>
 </resources>
