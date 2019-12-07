@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="Dialog_Center_Brief_Anim">
+        <item name="android:windowEnterAnimation">@anim/center_brief_enter</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
+    
+</resources>

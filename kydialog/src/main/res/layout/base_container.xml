@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zoe.kydialog.rclayout.RCRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rclayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+<LinearLayout
     android:orientation="vertical"
     android:background="@color/white_kydialog_root_view_color"
-    android:padding="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -31,3 +37,4 @@
 
     </FrameLayout>
 </LinearLayout>
+</com.zoe.kydialog.rclayout.RCRelativeLayout>

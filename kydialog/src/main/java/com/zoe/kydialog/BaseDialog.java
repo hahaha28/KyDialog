@@ -20,20 +20,11 @@ public class BaseDialog {
         kyDialog.cancel();
     }
 
-    /**
-     * 设置对话框是否有边角
-     * @param topCorner 顶部是否有圆角
-     * @param bottomCorner 底部是否有圆角
-     */
-    public BaseDialog setCorner(boolean topCorner,boolean bottomCorner){
-        kyDialog.setCorner(topCorner,bottomCorner);
-        return this;
-    }
 
     /**
      * 设置对话框出现的位置，要用Gravity类的常量,默认为Gravity.CENTER
      *
-     * @param gravity
+     * @param gravity Gravity类的常量
      */
     public BaseDialog setGravity(int gravity) {
         kyDialog.setGravity(gravity);
@@ -55,12 +46,10 @@ public class BaseDialog {
         return this;
     }
 
-
     public BaseDialog setContentAdapter(KyAdapter contentAdapter) {
         kyDialog.setContentAdapter(contentAdapter);
         return this;
     }
-
 
     public BaseDialog setFooterAdapter(KyAdapter footerAdapter) {
         kyDialog.setFooterAdapter(footerAdapter);

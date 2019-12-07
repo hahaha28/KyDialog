@@ -5,12 +5,17 @@
 
     <TextView
         android:id="@+id/kydialog_brief_header_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="0dp"
+        android:fontFamily="monospace"
+        android:gravity="center"
         android:text="标题"
-        android:textColor="@color/black_kydialog_text_hight_light"
-        android:textSize="18sp" />
+        android:textColor="@color/black_kydialog_text_dark"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 </RelativeLayout>

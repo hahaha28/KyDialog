@@ -1,6 +1,9 @@
-package com.zoe.kydialog.briefdialog;
+package com.zoe.kydialog.footer;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zoe.kydialog.KyAdapter;
@@ -8,18 +11,39 @@ import com.zoe.kydialog.R;
 
 public class BriefFooterAdapter implements KyAdapter {
 
-    private final int resId= R.layout.footer_brief;
+    /**
+     * 布局的View
+     */
+    private View view;
+    /**
+     * 取消的textView
+     */
+    private TextView cancelTextView;
+    /**
+     * 确定的TextView
+     */
+    private TextView confirmTextView;
     private String cancelText="取消";
     private String confirmText="确定";
     private View.OnClickListener onCancelClickListener;
     private View.OnClickListener onConfirmClickListener;
 
-    @Override
-    public int getResId() {
-        return resId;
+    public BriefFooterAdapter(Context context){
+        view = LayoutInflater.from(context)
+                .inflate(R.layout.footer_brief,null);
+        cancelTextView=view.findViewById(R.id.kydialog_brief_footer_cancle);
+        confirmTextView=view.findViewById(R.id.kydialog_brief_footer_confim);
     }
 
     @Override
+    public View getView() {
+        return view;
+    }
+
+    /**
+     * 设置View的数据
+     * @param view
+     */
     public void setViewData(View view) {
         TextView cancelTextView=view.findViewById(R.id.kydialog_brief_footer_cancle);
         TextView confirmTextView=view.findViewById(R.id.kydialog_brief_footer_confim);
@@ -30,20 +54,20 @@ public class BriefFooterAdapter implements KyAdapter {
     }
 
     public BriefFooterAdapter setCancelText(String cancelText) {
-        this.cancelText = cancelText;
+        cancelTextView.setText(cancelText);
         return this;
     }
 
     public BriefFooterAdapter setConfirmText(String confirmText) {
-        this.confirmText = confirmText;
+        confirmTextView.setText(confirmText);
         return this;
     }
 
     public void setOnCancelClickListener(View.OnClickListener onCancelClickListener) {
-        this.onCancelClickListener = onCancelClickListener;
+        cancelTextView.setOnClickListener(onCancelClickListener);
     }
 
     public void setOnConfirmClickListener(View.OnClickListener onConfirmClickListener) {
-        this.onConfirmClickListener = onConfirmClickListener;
+        confirmTextView.setOnClickListener(onConfirmClickListener);
     }
 }

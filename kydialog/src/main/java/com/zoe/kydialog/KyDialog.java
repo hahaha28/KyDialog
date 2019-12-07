@@ -7,13 +7,19 @@ import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+
+import com.zoe.kydialog.rclayout.RCRelativeLayout;
 
 public class KyDialog extends Dialog {
 
@@ -35,8 +41,8 @@ public class KyDialog extends Dialog {
     /**
      * 对话框的圆角
      */
-    private boolean topCorner;
-    private boolean bottomCorner;
+    private int topCornerRadius ;
+    private int bottomCornerRadius;
 
     /**
      * 对话框的位置，默认为中间
@@ -61,6 +67,9 @@ public class KyDialog extends Dialog {
         //设置window位置
         Window window = getWindow();
         window.setGravity(gravity);
+        //设置window背景
+        window.setDimAmount(0.4f);
+        window.setWindowAnimations(R.style.Dialog_Center_Brief_Anim);
         //获取屏幕大小
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         Point screenSize = new Point();
@@ -88,45 +97,41 @@ public class KyDialog extends Dialog {
                 break;
         }
         rootView.setLayoutParams(l);
-        //设置rootView圆角
-        if(topCorner && bottomCorner){
-            rootView.setBackgroundResource(R.drawable.shape_corner);
-        }else if(topCorner){
-            rootView.setBackgroundResource(R.drawable.shape_corner_top);
-        }else if(bottomCorner){
-            rootView.setBackgroundResource(R.drawable.shape_corner_bottom);
-        }
+        //获取RCLayout，设置圆角
+        RCRelativeLayout rcRelativeLayout = rootView.findViewById(R.id.rclayout);
+        rcRelativeLayout.setTopLeftRadius(topCornerRadius);
+        rcRelativeLayout.setTopRightRadius(topCornerRadius);
+        rcRelativeLayout.setBottomLeftRadius(bottomCornerRadius);
+        rcRelativeLayout.setBottomRightRadius(bottomCornerRadius);
+
         decorView.addView(rootView);    //添加rootView到decorView
         //设置顶部、内容、底部
         ViewGroup headerContainer = rootView.findViewById(R.id.kydialog_header_container);
         ViewGroup contentContainer = rootView.findViewById(R.id.kydialog_content_container);
         ViewGroup footerContainer = rootView.findViewById(R.id.kydialog_footer_container);
         if(headerAdapter != null){
-            View headerView=layoutInflater.inflate(headerAdapter.getResId(),headerContainer,false);
-            headerAdapter.setViewData(headerView);
+            View headerView=headerAdapter.getView();
             headerContainer.addView(headerView);
         }
         if(contentAdapter != null){
-            View contentView=layoutInflater.inflate(contentAdapter.getResId(),contentContainer,false);
-            contentAdapter.setViewData(contentView);
+            View contentView=contentAdapter.getView();
             contentContainer.addView(contentView);
         }
         if(footerAdapter != null){
-            View footerView=layoutInflater.inflate(footerAdapter.getResId(),footerContainer,false);
-            footerAdapter.setViewData(footerView);
+            View footerView=footerAdapter.getView();
             footerContainer.addView(footerView);
         }
 
     }
 
     /**
-     * 设置对话框是否有边角
-     * @param topCorner 顶部是否有圆角
-     * @param bottomCorner 底部是否有圆角
+     * 设置对话框的圆角
+     * @param topRadius 顶部圆角半径
+     * @param bottomRadius 底部圆角半径
      */
-    public void setCorner(boolean topCorner,boolean bottomCorner){
-        this.topCorner=topCorner;
-        this.bottomCorner=bottomCorner;
+    public void setCorner(int topRadius,int bottomRadius){
+        topCornerRadius = topRadius;
+        bottomCornerRadius = bottomRadius;
     }
 
     /**

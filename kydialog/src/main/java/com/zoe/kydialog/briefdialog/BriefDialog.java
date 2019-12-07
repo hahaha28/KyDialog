@@ -6,8 +6,11 @@ import android.view.View;
 
 import com.zoe.kydialog.BaseDialog;
 import com.zoe.kydialog.KyDialog;
+import com.zoe.kydialog.content.BriefContentAdapter;
+import com.zoe.kydialog.footer.BriefFooterAdapter;
+import com.zoe.kydialog.header.BriefHeaderAdapter;
 
-public class BriefDialog extends BaseDialog {
+public class BriefDialog extends KyDialog {
 
     private BriefHeaderAdapter headerAdapter;
     private BriefContentAdapter contentAdapter;
@@ -15,12 +18,16 @@ public class BriefDialog extends BaseDialog {
 
     public BriefDialog(Context context){
         super(context);
-        headerAdapter=new BriefHeaderAdapter();
-        contentAdapter=new BriefContentAdapter();
-        footerAdapter=new BriefFooterAdapter();
-        setHeaderAdapter(headerAdapter)
-                .setContentAdapter(contentAdapter)
-                .setFooterAdapter(footerAdapter);
+        headerAdapter=new BriefHeaderAdapter(context);
+        contentAdapter=new BriefContentAdapter(context);
+        footerAdapter=new BriefFooterAdapter(context);
+        setHeaderAdapter(headerAdapter);
+        setContentAdapter(contentAdapter);
+        setFooterAdapter(footerAdapter);
+        //设置圆角
+        setCorner(30,30);
+        //设置位置
+        setGravity(Gravity.CENTER);
     }
 
 
@@ -81,6 +88,15 @@ public class BriefDialog extends BaseDialog {
      */
     public BriefDialog setConfirmText(String confirmText){
         footerAdapter.setConfirmText(confirmText);
+        return this;
+    }
+
+    /**
+     * 取消对话框的头部标题
+     * @return this
+     */
+    public BriefDialog cancelHeader(){
+        setHeaderAdapter(null);
         return this;
     }
 

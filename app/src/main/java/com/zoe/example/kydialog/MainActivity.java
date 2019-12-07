@@ -10,6 +10,11 @@ import android.widget.RelativeLayout;
 
 import com.zoe.kydialog.KyDialog;
 import com.zoe.kydialog.briefdialog.BriefDialog;
+import com.zoe.kydialog.briefdialog.SimpleListDialog;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,30 +28,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final BriefDialog dialog = new BriefDialog(MainActivity.this);
-                dialog.setTitle("更新")
-                        .setContent("微信v7.0.5新特性:\n" +
-                                "-解决了一些已知问题\n" +
-                                "请点击确定在线升级，如果升级失败，请到https://weixin.qq.com下载最新版本\n" +
-                                "安装包大小：106.2MB")
-                        .setCancelText("取消")
-                        .setConfirmText("确定")
-                        .setOnCancelClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialog.cancel();
-                            }
-                        })
-                        .setOnConfirmClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialog.cancel();
-                            }
-                        })
-                        .setCorner(true, true)
-                        .setGravity(Gravity.CENTER)
-                        .cancelHeader()
-                        .cancelFooter();
+//                final SimpleListDialog dialog = new SimpleListDialog(v.getContext())
+//                        .setTitle("平和程度")
+//                        .setListData(Arrays.asList("平和","一般","浮躁"),1);
+                final BriefDialog dialog = new BriefDialog(v.getContext());
 
                 dialog.show();
             }
